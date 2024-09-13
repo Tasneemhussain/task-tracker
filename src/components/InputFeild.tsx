@@ -4,11 +4,12 @@ import "../styles.css"
 interface props{
     todo: string
     setTodo: React.Dispatch<React.SetStateAction<string>>;
+    handelAdd : (e: React.FormEvent) => void
 }
 
-const InputFeild:React.FC<props> = ({todo,setTodo}) => {
+const InputFeild:React.FC<props> = ({todo,setTodo ,handelAdd}) => {
   return ( 
-    <form className='input-cntr'> 
+    <form className='input-cntr' onSubmit={handelAdd}> 
        <input type='input' 
         value={todo}
         onChange={
