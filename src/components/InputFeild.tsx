@@ -1,4 +1,5 @@
-import React from 'react'
+
+import React, { useRef, useEffect } from 'react';
 import "../styles.css"
 
 interface props{
@@ -8,9 +9,18 @@ interface props{
 }
 
 const InputFeild:React.FC<props> = ({todo,setTodo ,handelAdd}) => {
+
+  const inputRef = useRef<HTMLInputElement>(null);
+    // Auto focus the input field when the component mounts
+  useEffect(() => {
+    inputRef.current?.focus();
+  }, []);
+
   return ( 
     <form className='input-cntr' onSubmit={handelAdd}> 
-       <input type='input' 
+       <input 
+         ref={inputRef} //  the ref to the input element for auto focus
+       type='input' 
         value={todo}
         onChange={
             (e)=>setTodo(e.target.value)
